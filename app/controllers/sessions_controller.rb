@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
                       :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
     reset_session
     session[:user_id] = user.id
-    redirect_to root_url, :notice => 'Signed in!'
+
+    data = request.env["omniauth.auth"].extra.raw_info
+    puts ">>>>>> extra"
+    puts data
+    puts env['omniauth.auth'].to_yml
+    redirect_to root_url, :notice => 'Login com sucesso!'
   end
 
   def destroy
