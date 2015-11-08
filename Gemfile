@@ -9,6 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'geocoder'
 gem 'sabre_dev_studio'
+gem 'rest-client'
 group :development, :test do
   gem 'byebug'
 end
