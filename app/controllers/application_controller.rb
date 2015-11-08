@@ -6,12 +6,20 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
-
+  helper_method :user_location
   private
     def current_user
       begin
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
       rescue Exception => e
+        nil
+      end
+    end
+
+    def user_location
+      if user_signed_in?
+        request.location
+      else
         nil
       end
     end
